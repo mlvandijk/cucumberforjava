@@ -1,6 +1,5 @@
 package stepdefs;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -14,17 +13,17 @@ import org.junit.Assert;
 public class CheckoutStepDefs {
 
     Checkout checkout;
-    int price = 0;
+    int itemPrice;
 
     @Given("^the price of a \"([^\"]*)\" is (\\d+)c$")
     public void thePriceOfItem(String item, int price) throws Throwable {
-        int itemPrice = price;
+        itemPrice = price;
     }
 
     @When("^I checkout (\\d+) \"([^\"]*)\"$")
     public void checkoutNumberOfItems(int number, String item) throws Throwable {
         checkout = new Checkout();
-        checkout.add(number, price);
+        checkout.add(number, itemPrice);
     }
 
     @Then("^the total price should be (\\d+)c$")
